@@ -12,8 +12,6 @@ public class BalletMoving : MonoBehaviour
 
     public void SetBallet()
     {   
-        transform.position = PlayerObject.transform.position;
-
         MoveDirection.x = Mathf.Sin(-PlayerObject.transform.eulerAngles.z * Mathf.Deg2Rad);
         MoveDirection.y = Mathf.Cos(-PlayerObject.transform.eulerAngles.z * Mathf.Deg2Rad);
         MoveDirection.z = 0;

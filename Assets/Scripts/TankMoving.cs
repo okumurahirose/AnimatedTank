@@ -1,11 +1,11 @@
 using System;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class TankMoving : MonoBehaviour
-{
-    CharacterController characterController;
+{   
     [SerializeField] private Camera MainCamera;
 
     [SerializeField] private float Speed;
@@ -16,10 +16,7 @@ public class TankMoving : MonoBehaviour
     private Vector2 MousePosition_Grobal;
     private Vector2 PositionDistance_ThisToMouse;
 
-    void Start()
-    {
-        characterController = GetComponent<CharacterController>();
-    }
+    float rotation_z;
 
     void Update()
     {   
@@ -29,8 +26,14 @@ public class TankMoving : MonoBehaviour
         PositionDistance_ThisToMouse.x = MousePosition_Grobal.x - transform.position.x;
         PositionDistance_ThisToMouse.y = MousePosition_Grobal.y - transform.position.y;
 
-        float rotation_z = -Mathf.Atan2(PositionDistance_ThisToMouse.x,PositionDistance_ThisToMouse.y) * Mathf.Rad2Deg;
+        rotation_z = Mathf.Atan2(PositionDistance_ThisToMouse.y,PositionDistance_ThisToMouse.x) * Mathf.Rad2Deg - 90.0f;
         transform.eulerAngles = new Vector3(0,0,rotation_z);
+
+        Debug.DrawLine(
+            transform.position,
+            MousePosition_Grobal,
+            Color.red
+        );
 
         if (Keyboard.current.wKey.isPressed)
         {   
@@ -53,12 +56,12 @@ public class TankMoving : MonoBehaviour
             Direction.y = -Mathf.Sin(transform.eulerAngles.z * Mathf.Deg2Rad);
         }
 
+        MoveDistance =  Direction.normalized * Speed * Time.deltaTime;
+        Vector2 currentposition = new Vector2(transform.position.x,transform.position.y);
 
-        MoveDistance =  Direction * Speed * Time.deltaTime;
-
-        characterController.Move(MoveDistance);
+        transform.position = currentposition + MoveDistance;
     }
-
+    
     Vector2 ConvertScreenPositionToWorldPosition(Vector2 ScreenPosition)
     {
         Vector2 NomalizedScreenPosition;
@@ -66,8 +69,8 @@ public class TankMoving : MonoBehaviour
         NomalizedScreenPosition.y = ScreenPosition.y / Screen.height * 2 - 1;
 
         Vector2 LocalPosition;
-        LocalPosition.x = NomalizedScreenPosition.x * MainCamera.orthographicSize * 2 * MainCamera.aspect;
-        LocalPosition.y = NomalizedScreenPosition.y * MainCamera.orthographicSize * 2;
+        LocalPosition.x = NomalizedScreenPosition.x * MainCamera.orthographicSize * MainCamera.aspect;
+        LocalPosition.y = NomalizedScreenPosition.y * MainCamera.orthographicSize;
 
         Vector2 WorldPosition;
         WorldPosition.x = LocalPosition.x + MainCamera.transform.position.x;

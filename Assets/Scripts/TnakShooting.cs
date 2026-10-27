@@ -36,6 +36,7 @@ public class TnakShooting : MonoBehaviour
     void Shoot()
     {
         GameObject target = balletPooling.LendBallet();
+        target.transform.position = transform.position + transform.TransformDirection(new Vector3(0,1,0));
         target.SetActive(true);
         target.GetComponent<BalletMoving>().SetBallet();
         CurrentBalletNum--;
