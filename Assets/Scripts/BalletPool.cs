@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BalletPooling : MonoBehaviour
+public class BalletPool : MonoBehaviour
 {
     [SerializeField] private GameObject PlayerObject;
     [SerializeField] private GameObject BalletObject;
@@ -41,7 +41,7 @@ public class BalletPooling : MonoBehaviour
                                 );
             
             target.SetActive(false);
-            target.GetComponent<BalletMoving>().PlayerObject = PlayerObject;
+            target.GetComponent<BalletMove>().PlayerObject = PlayerObject;
             target.transform.SetParent(transform);
             BalletList.Add(target);
         

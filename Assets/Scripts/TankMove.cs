@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class TankMoving : MonoBehaviour
+public class TankMove : MonoBehaviour
 {   
     [SerializeField] private Camera MainCamera;
 

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6736969062759361047
+--- !u!1 &5793128651471730403
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2763228461446394562}
-  - component: {fileID: 1457049771852855886}
-  - component: {fileID: 6808481114318941374}
-  - component: {fileID: 637017921053928506}
-  - component: {fileID: -5538600007121204468}
-  - component: {fileID: -6165389272216484770}
+  - component: {fileID: 3554389783002275122}
+  - component: {fileID: 5225648853425443035}
   m_Layer: 0
-  m_Name: Ballet
+  m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2763228461446394562
+--- !u!4 &3554389783002275122
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6736969062759361047}
+  m_GameObject: {fileID: 5793128651471730403}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7765, y: 0.9164, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2763228461446394562}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1457049771852855886
+--- !u!212 &5225648853425443035
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6736969062759361047}
+  m_GameObject: {fileID: 5793128651471730403}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -85,16 +81,52 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -1278115887363887060, guid: c13a075f42a146c4994e4185127e8525, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.69}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &6736969062759361047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2763228461446394562}
+  - component: {fileID: 6808481114318941374}
+  - component: {fileID: 637017921053928506}
+  - component: {fileID: -5538600007121204468}
+  - component: {fileID: -6165389272216484770}
+  m_Layer: 0
+  m_Name: Ballet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2763228461446394562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6736969062759361047}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3554389783002275122}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6808481114318941374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BalletMoving
   PlayerObject: {fileID: 0}
+  MyHPManage: {fileID: 637017921053928506}
   BalletSpeed: 10
 --- !u!114 &637017921053928506
 MonoBehaviour:
@@ -122,8 +155,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HPManaging
   identification: 2
-  MaxHP: 0
-  AttackDamage: 0
+  MaxHP: 10
+  CurrentHP: 0
+  AttackDamage: 10
 --- !u!58 &-5538600007121204468
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -159,7 +193,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.31362385
 --- !u!50 &-6165389272216484770
 Rigidbody2D:
   serializedVersion: 5
