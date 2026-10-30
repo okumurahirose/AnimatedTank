@@ -4,17 +4,17 @@ using UnityEngine.UI;
 
 public class DisplaySomeonesHP : MonoBehaviour
 {
-    [SerializeField] private HPManage TargetHPManage;
+    [SerializeField] private CharacterBase TargetCharacterBase;
     private Slider slider;
     void Start()
     {
         slider = GetComponent<Slider>();
         slider.minValue = 0;
-        slider.maxValue = TargetHPManage.MaxHP;
+        slider.maxValue = TargetCharacterBase.CopyMaxHP;
     }
 
     void Update()
     {
-        slider.value = TargetHPManage.CurrentHP;
+        slider.value = TargetCharacterBase.CopyCurrentHP;
     }
 }

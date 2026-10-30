@@ -101,7 +101,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2763228461446394562}
   - component: {fileID: 6808481114318941374}
-  - component: {fileID: 637017921053928506}
   - component: {fileID: -5538600007121204468}
   - component: {fileID: -6165389272216484770}
   m_Layer: 0
@@ -139,25 +138,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a6ce508a27977449b6da493b91212a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BalletMoving
-  PlayerObject: {fileID: 0}
-  MyHPManage: {fileID: 637017921053928506}
-  BalletSpeed: 10
---- !u!114 &637017921053928506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6736969062759361047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0701ff0a549c324387dd365d2f7d18e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HPManaging
   identification: 2
-  MaxHP: 10
-  CurrentHP: 0
-  AttackDamage: 10
+  Speed: 15
+  AttackDamage: 1
+  MaxHP: 1
+  PlayerObject: {fileID: 0}
 --- !u!58 &-5538600007121204468
 CircleCollider2D:
   m_ObjectHideFlags: 0

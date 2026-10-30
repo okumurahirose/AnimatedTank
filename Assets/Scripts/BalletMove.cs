@@ -1,11 +1,8 @@
 using UnityEngine;
 
-public class BalletMove : MonoBehaviour
+public class BalletMove : CharacterBase
 {   
     public GameObject PlayerObject;
-    [SerializeField] private HPManage MyHPManage;
-    [SerializeField] private float BalletSpeed;
-
     float LifeTime = 3.0f;
     float Timer;
     private Vector2 MoveDirection;
@@ -21,16 +18,16 @@ public class BalletMove : MonoBehaviour
         GetComponent<Rigidbody2D>().totalTorque = 0.0f;
         GetComponent<Rigidbody2D>().totalForce = Vector2.zero;
 
-        MyHPManage.CurrentHP = MyHPManage.MaxHP;
+        base.InitializeHP();
         Timer = 0.0f;
     }
 
-    void Update()
+    protected override void Update()
     {   
+        base.Update();
         
-        MoveDistance =  MoveDirection.normalized * BalletSpeed * Time.deltaTime;
-        Vector2 currentposition = new Vector2(transform.position.x,transform.position.y);
-        transform.position = currentposition + MoveDistance;
+        MoveDistance =  MoveDirection.normalized * base.Speed * Time.deltaTime;
+        transform.position = base.currentPosition + MoveDistance;
        
         Timer += Time.deltaTime;
         if(Timer >= LifeTime) gameObject.SetActive(false);

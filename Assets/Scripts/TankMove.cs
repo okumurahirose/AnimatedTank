@@ -4,11 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class TankMove : MonoBehaviour
+public class TankMove : CharacterBase
 {   
     [SerializeField] private Camera MainCamera;
-
-    [SerializeField] private float Speed;
 
     private Vector2 Direction;
     private Vector2 MoveDistance;
@@ -18,8 +16,9 @@ public class TankMove : MonoBehaviour
 
     float rotation_z;
 
-    void Update()
+    protected override void Update()
     {   
+        base.Update();
         Direction = Vector2.zero;
         MousePosition_Grobal = ConvertScreenPositionToWorldPosition(Mouse.current.position.ReadValue());
 
@@ -29,11 +28,6 @@ public class TankMove : MonoBehaviour
         rotation_z = Mathf.Atan2(PositionDistance_ThisToMouse.y,PositionDistance_ThisToMouse.x) * Mathf.Rad2Deg - 90.0f;
         transform.eulerAngles = new Vector3(0,0,rotation_z);
 
-        Debug.DrawLine(
-            transform.position,
-            MousePosition_Grobal,
-            Color.red
-        );
 
         if (Keyboard.current.wKey.isPressed)
         {   
@@ -57,9 +51,8 @@ public class TankMove : MonoBehaviour
         }
 
         MoveDistance =  Direction.normalized * Speed * Time.deltaTime;
-        Vector2 currentposition = new Vector2(transform.position.x,transform.position.y);
 
-        transform.position = currentposition + MoveDistance;
+        transform.position = base.currentPosition + MoveDistance;
     }
     
     Vector2 ConvertScreenPositionToWorldPosition(Vector2 ScreenPosition)

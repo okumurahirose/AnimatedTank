@@ -101,7 +101,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6023832927112364071}
   - component: {fileID: 1038747950132088998}
-  - component: {fileID: 3294960617332298417}
   - component: {fileID: 2424302879986346389}
   - component: {fileID: 7229422190359938305}
   - component: {fileID: 4947507246284889580}
@@ -140,24 +139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805370087ead45f4bb07efd68d519010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_1
-  PlayerObject: {fileID: 0}
-  Speed: 5
---- !u!114 &3294960617332298417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8241830950725084545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0701ff0a549c324387dd365d2f7d18e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HPManage
   identification: 1
-  MaxHP: 10
-  CurrentHP: 0
+  Speed: 3
   AttackDamage: 1
+  MaxHP: 1
 --- !u!50 &2424302879986346389
 Rigidbody2D:
   serializedVersion: 5
