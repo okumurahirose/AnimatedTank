@@ -1,6 +1,5 @@
-using System;
-using Unity.Mathematics;
-using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,9 +15,18 @@ public class TankMove : CharacterBase
 
     float rotation_z;
 
+    private int AnimationNumber;
+    private bool IsTracing;
+
     protected override void Update()
     {   
         base.Update();
+        if(IsTracing) return;
+        if(Keyboard.current.tKey.wasPressedThisFrame){
+            IsTracing = true;
+            StartCoroutine(TraceRecord(AnimationNumber));
+        }
+        
         Direction = Vector2.zero;
         MousePosition_Grobal = ConvertScreenPositionToWorldPosition(Mouse.current.position.ReadValue());
 
@@ -27,7 +35,6 @@ public class TankMove : CharacterBase
 
         rotation_z = Mathf.Atan2(PositionDistance_ThisToMouse.y,PositionDistance_ThisToMouse.x) * Mathf.Rad2Deg - 90.0f;
         transform.eulerAngles = new Vector3(0,0,rotation_z);
-
 
         if (Keyboard.current.wKey.isPressed)
         {   
@@ -70,5 +77,37 @@ public class TankMove : CharacterBase
         WorldPosition.y = LocalPosition.y + MainCamera.transform.position.y;
 
         return WorldPosition;
+    }
+
+    IEnumerator TraceRecord(int AnimationNumber)
+    {
+        List<Vector3[]> TransformLog = AnimationStorage.Instance.TransformLogs[AnimationNumber];
+        float RecordingTime = AnimationStorage.Instance.RecordingTimes[AnimationNumber];
+
+
+        float Timer = 0.0f;
+        int index = 0;
+        Vector3 StartPosition = transform.position;
+        Vector3 StartAngles = transform.eulerAngles;
+        Vector3 StartScale = transform.localScale;
+        Debug.Log("StartTrace");
+
+        while(Timer < RecordingTime){
+            if(index + 1 == TransformLog.Count) break;
+
+            Vector3 TargetPosition = Quaternion.Euler(StartAngles - AnimationStorage.Instance.StartRecordAngles[AnimationNumber]) * TransformLog[index+1][0] + StartPosition;
+            Vector3 TargetEulerAngles = TransformLog[index+1][1] + StartAngles;
+            Vector3 TargetLocalScale = TransformLog[index+1][2] + StartScale;
+
+            transform.position = TargetPosition;
+            transform.eulerAngles = TargetEulerAngles;
+            transform.localScale = TargetLocalScale;
+
+            Timer += AnimationStorage.Instance.RecordingRate;
+            index++;
+            yield return new WaitForSeconds(AnimationStorage.Instance.RecordingRate);
+        }
+
+        IsTracing = false;
     }
 }

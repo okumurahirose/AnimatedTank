@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterBase : MonoBehaviour
+public abstract class CharacterBase : MonoBehaviour
 {
     public enum Identification{Player,Enemy,Ballet};
     public Identification identification;
