@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class TankMove : CharacterBase
 {   
     [SerializeField] private Camera MainCamera;
+    [SerializeField] private TMP_Dropdown tMP_Dropdown;
 
     private Vector2 Direction;
     private Vector2 MoveDistance;
@@ -24,6 +26,7 @@ public class TankMove : CharacterBase
         if(IsTracing) return;
         if(Keyboard.current.tKey.wasPressedThisFrame){
             IsTracing = true;
+            AnimationNumber = tMP_Dropdown.value;
             StartCoroutine(TraceRecord(AnimationNumber));
         }
         

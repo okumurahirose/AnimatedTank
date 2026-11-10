@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class RecodAnimation : MonoBehaviour
 {
     private GameObject PlayerObject;
+    [SerializeField] TMP_Dropdown tMP_Dropdown;
     public bool IsRecorded = false;
 
     public int StoreNumber;
-    private List<Vector3[]> TransformLog = new List<Vector3[]>();
 
     public float RecordingTime;
     private float RecordingRate;
@@ -31,6 +32,8 @@ public class RecodAnimation : MonoBehaviour
 
     public IEnumerator StartRecording()
     {
+        StoreNumber = tMP_Dropdown.value;
+        List<Vector3[]> TransformLog = new List<Vector3[]>();
         IsRecorded = true;
         float Timer = 0.0f;
         int k = 0;
